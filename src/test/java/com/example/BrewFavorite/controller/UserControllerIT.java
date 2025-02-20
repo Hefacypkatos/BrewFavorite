@@ -2,6 +2,7 @@ package com.example.BrewFavorite.controller;
 
 import com.example.BrewFavorite.model.FavoriteBeveragesEntity;
 import com.example.BrewFavorite.model.UserEntity;
+import com.example.BrewFavorite.repository.FavoriteBeveragesRepository;
 import com.example.BrewFavorite.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,8 @@ public class UserControllerIT {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private FavoriteBeveragesRepository favoriteBeveragesRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -44,6 +47,7 @@ public class UserControllerIT {
 
 
         userRepository.save(testUser);
+        favoriteBeveragesRepository.save(testFavoriteBrew);
     }
 
     @Test

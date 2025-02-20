@@ -1,6 +1,7 @@
 package com.example.BrewFavorite.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
@@ -31,5 +32,8 @@ public class UserEntity {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
+    @JsonManagedReference
     private FavoriteBeveragesEntity favoriteBeverages;
+
+
 }

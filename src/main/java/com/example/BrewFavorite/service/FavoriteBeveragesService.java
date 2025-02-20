@@ -21,7 +21,7 @@ public class FavoriteBeveragesService {
 
 
     public List<BeverageEntity> getUsersFavoriteBeverages(long id) {
-        FavoriteBeveragesEntity favoriteBeverages =  favoriteBeveragesRepository.findByUserID(id);
+        FavoriteBeveragesEntity favoriteBeverages =  favoriteBeveragesRepository.findByUserID(id); //Do wyjebania , prosciej bedzie z UserService
         return favoriteBeverages.getBeverages();
     }
 
