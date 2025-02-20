@@ -29,7 +29,5 @@ public class UserEntity {
     @NotNull
     private String password;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    private FavoriteBeveragesEntity favoriteBeverages;
+
 }

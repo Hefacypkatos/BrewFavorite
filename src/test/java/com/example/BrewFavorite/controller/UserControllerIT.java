@@ -1,6 +1,5 @@
 package com.example.BrewFavorite.controller;
 
-import com.example.BrewFavorite.model.FavoriteBeveragesEntity;
 import com.example.BrewFavorite.model.UserEntity;
 import com.example.BrewFavorite.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,17 +29,16 @@ public class UserControllerIT {
     private ObjectMapper objectMapper;
 
     private UserEntity testUser;
-    private FavoriteBeveragesEntity testFavoriteBrew;
+
 
     @BeforeEach
     void setup() {
         userRepository.deleteAll(); //
 
         testUser = new UserEntity();
-        testFavoriteBrew = new FavoriteBeveragesEntity();
+
         testUser.setUsername("Anal-fabeta");
         testUser.setPassword("password123");
-        testUser.setFavoriteBeverages(testFavoriteBrew);
 
 
         userRepository.save(testUser);

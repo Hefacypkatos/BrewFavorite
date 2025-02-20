@@ -36,8 +36,5 @@ public class BeverageEntity {
     @Column(name = "manufacture_date")
     private int manufactureDate;
 
-    @ManyToMany(mappedBy = "beverages")
-    private List<FavoriteBeveragesEntity> favoriteBeverages;
-
 
 }
