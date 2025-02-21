@@ -33,4 +33,8 @@ public class FavoriteBeveragesEntity {
     @ManyToMany
     @JoinTable(name ="favorite_beverage_beverages", joinColumns = @JoinColumn(name= "favorite_beverage_id"), inverseJoinColumns = @JoinColumn(name = "beverage_id"))
     private List<BeverageEntity> beverages = new ArrayList<>();
+
+    public FavoriteBeveragesEntity(UserEntity user) {
+        this.user = user;
+    }
 }

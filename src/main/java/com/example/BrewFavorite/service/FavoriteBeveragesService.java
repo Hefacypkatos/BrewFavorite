@@ -18,25 +18,26 @@ public class FavoriteBeveragesService {
     FavoriteBeveragesRepository favoriteBeveragesRepository;
     @Autowired
     BeverageService beverageService;
+    @Autowired
+    UserService userService;
 
 
     public List<BeverageEntity> getUsersFavoriteBeverages(long id) {
-        FavoriteBeveragesEntity favoriteBeverages =  favoriteBeveragesRepository.findByUserID(id); //Do wyjebania , prosciej bedzie z UserService
-        return favoriteBeverages.getBeverages();
+        return userService.getUserByID(id).getFavoriteBeverages().getBeverages();
     }
 
     public FavoriteBeveragesEntity addBeverageToUserFavoriteBeverages(long userId, long beverageId) {
-        FavoriteBeveragesEntity favoriteBeverages =  favoriteBeveragesRepository.findByUserID(userId);
+      FavoriteBeveragesEntity favoriteBeverages = userService.getUserByID(userId).getFavoriteBeverages();
         BeverageEntity beverage = beverageService.getBeverageByID(beverageId);
         if(!favoriteBeverages.getBeverages().contains(beverage)) {
             favoriteBeverages.getBeverages().add(beverage);
-        } else throw new DuplicateFoundException (String.format("Duplicate found! UserID: %s BeverageID: %s", userId,beverageId));
+        } else throw new DuplicateFoundException(String.format("BeverageId: %s already exist in UserId: %s favorite lsit", beverageId,userId));
         return favoriteBeveragesRepository.save(favoriteBeverages);
 
     }
 
     public FavoriteBeveragesEntity removeBeverageFromUserFavoriteBeverages(long userId, long beverageId) {
-        FavoriteBeveragesEntity favoriteBeverages = favoriteBeveragesRepository.findByUserID(userId);
+        FavoriteBeveragesEntity favoriteBeverages = userService.getUserByID(userId).getFavoriteBeverages();
         BeverageEntity beverage = beverageService.getBeverageByID(beverageId);
         if(favoriteBeverages.getBeverages().contains(beverage)) {
             favoriteBeverages.getBeverages().remove(beverage);

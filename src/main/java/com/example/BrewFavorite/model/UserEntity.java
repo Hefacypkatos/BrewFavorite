@@ -30,10 +30,14 @@ public class UserEntity {
     @NotNull
     private String password;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JsonManagedReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private FavoriteBeveragesEntity favoriteBeverages;
+
+    public UserEntity(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.favoriteBeverages = new FavoriteBeveragesEntity(this);
+    }
 
 
 }

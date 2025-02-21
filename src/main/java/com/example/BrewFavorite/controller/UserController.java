@@ -36,8 +36,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserEntity> createUser(@RequestBody @Valid UserEntity user)  {
         UserEntity createdUser = userService.createUser(user);
-        createdUser.getFavoriteBeverages();
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @DeleteMapping("/{id}")

@@ -33,21 +33,18 @@ public class UserControllerIT {
     private ObjectMapper objectMapper;
 
     private UserEntity testUser;
-    private FavoriteBeveragesEntity testFavoriteBrew;
 
     @BeforeEach
     void setup() {
         userRepository.deleteAll(); //
 
         testUser = new UserEntity();
-        testFavoriteBrew = new FavoriteBeveragesEntity();
         testUser.setUsername("Anal-fabeta");
         testUser.setPassword("password123");
-        testUser.setFavoriteBeverages(testFavoriteBrew);
+        testUser.setFavoriteBeverages(new FavoriteBeveragesEntity(testUser));
 
 
-        userRepository.save(testUser);
-        favoriteBeveragesRepository.save(testFavoriteBrew);
+        testUser = userRepository.save(testUser);
     }
 
     @Test

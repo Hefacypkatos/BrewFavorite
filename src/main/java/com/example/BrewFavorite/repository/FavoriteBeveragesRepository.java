@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface FavoriteBeveragesRepository extends JpaRepository<FavoriteBeveragesEntity, Long> {
-    FavoriteBeveragesEntity findByUserID(Long userID);
+
 }
